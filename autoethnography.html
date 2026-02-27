@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aiden.log — An Academic Path</title>
+    <title>aiden.log | An Academic Path</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -51,6 +51,7 @@
                     rgba(0, 0, 0, 0.08) 4px);
             pointer-events: none;
             z-index: 100;
+            animation: flicker 8s infinite;
         }
 
         /* CRT vignette */
@@ -97,11 +98,13 @@
         }
 
         .divider {
-            border: none;
-            border-top: 1px solid var(--amber-dim);
+            height: 1px;
+            background: var(--amber-dim);
             margin: 16px 0;
-            opacity: 0.4;
+            width: 0;
+            opacity: 0;
             box-shadow: 0 0 6px rgba(255, 149, 0, 0.2);
+            animation: drawLine 0.6s ease forwards;
         }
 
         /* System line (like a terminal prompt) */
@@ -135,7 +138,7 @@
         .story-line {
             margin: 6px 0;
             opacity: 0;
-            animation: fadeSlideIn 0.4s ease forwards;
+            animation: fadeSlideIn 0.9s ease forwards;
         }
 
         /* Reflection block */
@@ -149,7 +152,13 @@
             font-style: italic;
             box-shadow: inset 0 0 20px rgba(255, 149, 0, 0.03);
             opacity: 0;
-            animation: fadeSlideIn 0.5s ease forwards;
+            animation: reflectionIn 0.9s ease forwards;
+            transition: background 0.3s ease, border-left-color 0.3s ease;
+        }
+
+        .reflection:hover {
+            background: rgba(255, 149, 0, 0.08);
+            border-left-color: var(--amber-bright);
         }
 
         .reflection::before {
@@ -233,16 +242,16 @@
 
         #progress-bar {
             flex: 1;
-            height: 2px;
-            background: rgba(255, 149, 0, 0.1);
+            height: 4px;
+            background: rgba(255, 149, 0, 0.18);
             border-radius: 2px;
             overflow: hidden;
         }
 
         #progress-fill {
             height: 100%;
-            background: var(--amber-glow);
-            box-shadow: 0 0 8px var(--amber-glow);
+            background: linear-gradient(90deg, var(--amber-dim), var(--amber-glow));
+            animation: progress-glow 2s ease infinite;
             transition: width 0.6s ease;
             width: 0%;
         }
@@ -267,14 +276,25 @@
         }
 
         @keyframes fadeSlideIn {
-            from {
+            0% {
                 opacity: 0;
                 transform: translateY(4px);
+                text-shadow: 0 0 18px var(--amber-bright), 0 0 40px rgba(255, 149, 0, 0.9);
+                color: var(--amber-bright);
             }
 
-            to {
+            15% {
                 opacity: 1;
                 transform: translateY(0);
+                text-shadow: 0 0 18px var(--amber-bright), 0 0 40px rgba(255, 149, 0, 0.9);
+                color: var(--amber-bright);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                text-shadow: none;
+                color: var(--amber);
             }
         }
 
@@ -301,6 +321,79 @@
             margin-left: 2px;
         }
 
+        /* Screen flicker */
+        @keyframes flicker {
+
+            0%,
+            19%,
+            21%,
+            23%,
+            25%,
+            54%,
+            56%,
+            100% {
+                opacity: 1;
+            }
+
+            20%,
+            24%,
+            55% {
+                opacity: 0.92;
+            }
+        }
+
+        /* Progress bar glow pulse */
+        @keyframes progress-glow {
+            0% {
+                box-shadow: 0 0 6px var(--amber-glow);
+            }
+
+            50% {
+                box-shadow: 0 0 14px var(--amber-glow), 0 0 28px rgba(255, 149, 0, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 6px var(--amber-glow);
+            }
+        }
+
+        /* Reflection phosphor settle (amber-dim target) */
+        @keyframes reflectionIn {
+            0% {
+                opacity: 0;
+                transform: translateY(4px);
+                border-left-color: var(--amber-bright);
+                box-shadow: inset 0 0 30px rgba(255, 149, 0, 0.15);
+            }
+
+            15% {
+                opacity: 1;
+                transform: translateY(0);
+                border-left-color: var(--amber-bright);
+                box-shadow: inset 0 0 30px rgba(255, 149, 0, 0.15);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                border-left-color: var(--amber-glow);
+                box-shadow: inset 0 0 20px rgba(255, 149, 0, 0.03);
+            }
+        }
+
+        /* Divider draw-in */
+        @keyframes drawLine {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+
+            to {
+                width: 100%;
+                opacity: 0.4;
+            }
+        }
+
         /* Boot animation */
         @keyframes bootLine {
             from {
@@ -325,8 +418,8 @@
                 opacity: 0;
             }
 
-            20% {
-                opacity: 0.15;
+            8% {
+                opacity: 0.5;
             }
 
             100% {
@@ -343,7 +436,7 @@
             background: var(--amber);
             pointer-events: none;
             z-index: 98;
-            animation: flash 0.4s ease forwards;
+            animation: flash 0.5s ease forwards;
         }
 
         /* Prologue box */
@@ -386,6 +479,113 @@
             background: var(--amber-dim);
             border-radius: 2px;
         }
+
+        /* Glitch effect for UNDEFINED chapter */
+        @keyframes glitch-shift {
+            0% {
+                transform: translateX(0);
+                clip-path: inset(0 0 100% 0);
+            }
+
+            10% {
+                transform: translateX(-4px);
+                clip-path: inset(20% 0 60% 0);
+            }
+
+            20% {
+                transform: translateX(3px);
+                clip-path: inset(50% 0 30% 0);
+            }
+
+            30% {
+                transform: translateX(-2px);
+                clip-path: inset(70% 0 10% 0);
+            }
+
+            100% {
+                transform: translateX(0);
+                clip-path: inset(0 0 100% 0);
+            }
+        }
+
+        @keyframes glitch-color {
+            0% {
+                text-shadow: 0 0 12px var(--amber-glow), 0 0 40px rgba(255, 149, 0, 0.4);
+            }
+
+            10% {
+                text-shadow: -3px 0 rgba(255, 0, 0, 0.6), 3px 0 rgba(0, 200, 255, 0.6);
+            }
+
+            20% {
+                text-shadow: 2px 0 rgba(255, 0, 0, 0.5), -2px 0 rgba(0, 200, 255, 0.5);
+            }
+
+            100% {
+                text-shadow: 0 0 12px var(--amber-glow), 0 0 40px rgba(255, 149, 0, 0.4);
+            }
+        }
+
+        .glitch-text {
+            position: relative;
+            animation: glitch-color 0.3s steps(1) forwards;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch-text::before {
+            animation: glitch-shift 0.3s steps(1) forwards;
+            color: rgba(255, 100, 0, 0.8);
+        }
+
+        .glitch-text::after {
+            animation: glitch-shift 0.3s steps(1) 0.05s forwards;
+            color: rgba(0, 200, 255, 0.5);
+        }
+
+        /* Accessibility: reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            body::before {
+                animation: none;
+            }
+
+            .story-line,
+            .reflection {
+                animation: fadeIn 0.2s ease forwards;
+            }
+
+            .boot-line {
+                animation: fadeIn 0.2s ease forwards;
+            }
+
+            .chapter-flash {
+                display: none;
+            }
+
+            .glitch-text,
+            .glitch-text::before,
+            .glitch-text::after {
+                animation: none;
+            }
+
+            .divider {
+                animation: none;
+                width: 100%;
+                opacity: 0.4;
+            }
+
+            #progress-fill {
+                animation: none;
+            }
+        }
     </style>
 </head>
 
@@ -404,7 +604,7 @@
     </div>
 
     <div id="input-area">
-        <div id="hint-text">— — —</div>
+        <div id="hint-text">· · ·</div>
         <div id="progress-bar-wrap">
             <span id="progress-label">CHAPTER 0 / 8</span>
             <div id="progress-bar">
@@ -441,7 +641,7 @@
                 id: 'BOOT',
                 label: 'SYSTEM INITIALIZATION',
                 blocks: [
-                    { type: 'sys', text: 'AIDEN.LOG v1.0 — EDUCATIONAL AUTOETHNOGRAPHY', delay: 0 },
+                    { type: 'sys', text: 'AIDEN.LOG v1.0 // EDUCATIONAL AUTOETHNOGRAPHY', delay: 0 },
                     { type: 'sys', text: 'Compiled: Spring 2026  |  EPSY 201  |  University of Illinois Urbana-Champaign', delay: 80 },
                     { type: 'divider', delay: 160 },
                     {
@@ -456,7 +656,7 @@
                     { type: 'divider', delay: 1300 },
                     { type: 'prologue', delay: 1500 },
                     { type: 'spacer', delay: 1800 },
-                    { type: 'sys', text: '─── 7 chapters to load. Press ENTER to begin. ───', delay: 1900 },
+                    { type: 'sys', text: '=== 7 chapters to load. Press ENTER to begin. ===', delay: 1900 },
                 ]
             },
 
@@ -468,13 +668,13 @@
                     { type: 'chapter-header', text: 'INIT', delay: 0 },
                     { type: 'chapter-tag', text: '// THE FIRST BUILD', delay: 100 },
                     { type: 'story', text: 'It was the summer before my freshman year of high school.', delay: 200 },
-                    { type: 'story', text: 'I enrolled in a programming class — not because I had a plan, but because I was curious.', delay: 400 },
+                    { type: 'story', text: 'I enrolled in a programming class, not because I had a plan, but because I was curious.', delay: 400 },
                     { type: 'story', text: 'And then something happened that I didn\'t expect:', delay: 600 },
                     { type: 'story', text: 'I built something. <span class="hi">Something that worked.</span>', delay: 800, html: true },
                     { type: 'story', text: 'It wasn\'t impressive by any measurable standard. But the feeling was unlike anything I had experienced in a classroom before.', delay: 1000 },
-                    { type: 'story', text: 'A blank screen. A language I barely knew. And yet — <span class="hi-green">I made something exist that did not exist before.</span>', delay: 1250, html: true },
-                    { type: 'story', text: 'That feeling of creation — that was the hook. Not algorithms, not career prospects. Just the raw, electric fact that I could <span class="hi">build</span>.', delay: 1500, html: true },
-                    { type: 'reflection', text: 'Access to early CS education is not evenly distributed. Summer programs and elective coding classes often exist only at well-resourced schools. The students who discover that spark earliest are frequently those who are already advantaged. I was lucky to have access. That luck matters — and it shapes who ends up in this field.', delay: 1800 },
+                    { type: 'story', text: 'A blank screen. A language I barely knew. And yet, <span class="hi-green">I made something exist that did not exist before.</span>', delay: 1250, html: true },
+                    { type: 'story', text: 'That feeling of creation, that was the hook. Not algorithms, not career prospects. Just the raw, electric fact that I could <span class="hi">build</span>.', delay: 1500, html: true },
+                    { type: 'reflection', text: 'Access to early CS education is not evenly distributed. Summer programs and elective coding classes often exist only at well-resourced schools. The students who discover that spark earliest are frequently those who are already advantaged. I was lucky to have access. That luck matters, and it shapes who ends up in this field.', delay: 1800 },
                 ]
             },
 
@@ -489,11 +689,11 @@
                     { type: 'story', text: 'Some of us were teachers before we were coders.', delay: 400 },
                     { type: 'story', text: 'In high school, I was a novice mentor for my debate team. I taught new members how to research, how to argue, how to think on their feet.', delay: 650 },
                     { type: 'story', text: 'I was also a swim instructor for four years. I stood at the edge of the water and watched kids figure out how to do something they had never done before.', delay: 950 },
-                    { type: 'story', text: 'That moment — when it <span class="hi">clicks</span> for someone — is not that different from the moment code finally runs.', delay: 1200, html: true },
+                    { type: 'story', text: 'That moment, when it <span class="hi">clicks</span> for someone, is not that different from the moment code finally runs.', delay: 1200, html: true },
                     { type: 'story', text: 'Both are about understanding a system deeply enough to explain it to someone who is seeing it for the first time.', delay: 1450 },
                     { type: 'story', text: 'I never saw CS and Education as two separate interests I had to choose between.', delay: 1650 },
                     { type: 'story', text: '<span class="hi-blue">They were the same impulse. Running in parallel.</span>', delay: 1850, html: true },
-                    { type: 'reflection', text: 'In most CS programs, pedagogy is treated as a soft skill — secondary to technical ability. But research consistently shows that the ability to explain and teach ideas deepens your own understanding. The students who help others learn become stronger learners themselves. CS culture undervalues this. CS + Education, as a discipline, insists on taking it seriously.', delay: 2100 },
+                    { type: 'reflection', text: 'In most CS programs, pedagogy is treated as a soft skill, secondary to technical ability. But research consistently shows that the ability to explain and teach ideas deepens your own understanding. The students who help others learn become stronger learners themselves. CS culture undervalues this. CS + Education, as a discipline, insists on taking it seriously.', delay: 2100 },
                 ]
             },
 
@@ -510,9 +710,9 @@
                     { type: 'story', text: 'These weren\'t teachers who handed you information and waited for you to absorb it.', delay: 900 },
                     { type: 'story', text: 'They were teachers who seemed genuinely curious about what you were thinking.', delay: 1100 },
                     { type: 'story', text: 'There is a difference between being taught <span class="hi">at</span> and being taught <span class="hi-green">with</span>.', delay: 1300, html: true },
-                    { type: 'story', text: 'I learned a lot of CS from those classes. But I think I learned more about what <span class="hi">good teaching feels like</span> — from the inside, as a student.', delay: 1550, html: true },
+                    { type: 'story', text: 'I learned a lot of CS from those classes. But I think I learned more about what <span class="hi">good teaching feels like</span>, from the inside, as a student.', delay: 1550, html: true },
                     { type: 'story', text: 'And that knowledge sits underneath everything I now want to build.', delay: 1750 },
-                    { type: 'reflection', text: 'The research on teacher-student relationships is unambiguous: students who experience genuine, sustained connection with a teacher show measurably better outcomes — academically and personally. These relationships are infrastructure. They do not appear in school budgets or ranking metrics, but they are load-bearing. My own trajectory runs directly through the two teachers who chose to invest in me across two years.', delay: 2000 },
+                    { type: 'reflection', text: 'The research on teacher-student relationships is unambiguous: students who experience genuine, sustained connection with a teacher show measurably better outcomes, academically and personally. These relationships are infrastructure. They do not appear in school budgets or ranking metrics, but they are load-bearing. My own trajectory runs directly through the two teachers who chose to invest in me across two years.', delay: 2000 },
                 ]
             },
 
@@ -528,10 +728,10 @@
                     { type: 'story', text: 'UIUC had something that most schools do not bother to surface clearly:', delay: 650 },
                     { type: 'story', text: '<span class="hi">A visual representation of what your academic path could actually look like.</span>', delay: 850, html: true },
                     { type: 'story', text: 'Not just a list of requirements. A map. With branches. With options. With the shape of four years laid out so you could trace your finger along different routes.', delay: 1100 },
-                    { type: 'story', text: 'For someone who wanted to study Computer Science <span class="hi-blue">AND</span> Education — and was not sure that combination was even allowed to exist — that map was permission.', delay: 1380, html: true },
+                    { type: 'story', text: 'For someone who wanted to study Computer Science <span class="hi-blue">AND</span> Education, and was not sure that combination was even allowed to exist, that map was permission.', delay: 1380, html: true },
                     { type: 'story', text: 'I visited. I decided. I committed to going somewhere I had never lived, where I did not know a single person.', delay: 1630 },
                     { type: 'story', text: 'That is its own kind of courage. And I didn\'t fully appreciate it until I was already here.', delay: 1850 },
-                    { type: 'reflection', text: 'Transparency in academic pathways is an equity issue. First-generation students, students from under-resourced high schools, and students pursuing unusual combinations of majors often cannot see what is available to them. Curriculum visibility — showing students what their path could look like, not just what they are required to complete — changes who applies, who enrolls, and who finishes. The map I found wasn\'t just a tool. It was an invitation.', delay: 2100 },
+                    { type: 'reflection', text: 'Transparency in academic pathways is an equity issue. First-generation students, students from under-resourced high schools, and students pursuing unusual combinations of majors often cannot see what is available to them. Curriculum visibility, showing students what their path could look like, not just what they are required to complete, changes who applies, who enrolls, and who finishes. The map I found wasn\'t just a tool. It was an invitation.', delay: 2100 },
                 ]
             },
 
@@ -546,11 +746,11 @@
                     { type: 'story', text: 'Everything was bigger. The lecture halls, the workload, the distance from anything familiar.', delay: 400 },
                     { type: 'story', text: 'I had made the decision to come here without knowing anyone. That is not something you can fully simulate in advance.', delay: 650 },
                     { type: 'story', text: 'But I found a group of friends early. And that changed everything.', delay: 900 },
-                    { type: 'story', text: 'Not because it made college easy — it doesn\'t — but because it made the difficulty <span class="hi">shared</span>.', delay: 1100, html: true },
+                    { type: 'story', text: 'Not because it made college easy (it doesn\'t) but because it made the difficulty <span class="hi">shared</span>.', delay: 1100, html: true },
                     { type: 'story', text: 'There is something important about people who make you want to build things.', delay: 1300 },
                     { type: 'story', text: 'My friends inspired some of the projects I\'ve worked on this year. Not by assigning them to me. By having <span class="hi-green">real needs</span> that I could actually solve.', delay: 1550, html: true },
                     { type: 'story', text: 'That is the difference between a project and a <span class="hi">product</span>.', delay: 1750, html: true },
-                    { type: 'reflection', text: 'Loneliness and social isolation in university STEM programs are documented and serious problems — particularly for students who are the first in their family to attend college, or who arrive without an existing social network. Community is not an added benefit of college; for many students, it is the variable that determines whether they stay. I was fortunate. I found my people quickly. I try to remember that not everyone does.', delay: 2000 },
+                    { type: 'reflection', text: 'Loneliness and social isolation in university STEM programs are documented and serious problems, particularly for students who are the first in their family to attend college, or who arrive without an existing social network. Community is not an added benefit of college; for many students, it is the variable that determines whether they stay. I was fortunate. I found my people quickly. I try to remember that not everyone does.', delay: 2000 },
                 ]
             },
 
@@ -565,10 +765,10 @@
                     { type: 'story', text: 'It is a note-sharing platform built specifically for UIUC students. Share notes by course. Connect with peers. Ask a chatbot when you\'re stuck at 2am before an exam.', delay: 450 },
                     { type: 'story', text: 'It is also the moment when CS and Education stopped being two things I was studying and became <span class="hi">one thing I was doing</span>.', delay: 750, html: true },
                     { type: 'story', text: 'I was not assigned this project. No rubric brought it into existence.', delay: 1000 },
-                    { type: 'story', text: 'It exists because I looked at the students around me — my friends, my classmates — and saw a real problem worth solving.', delay: 1250 },
+                    { type: 'story', text: 'It exists because I looked at the students around me, my friends, my classmates, and saw a real problem worth solving.', delay: 1250 },
                     { type: 'story', text: 'A well-designed learning tool is not just a technical object. It encodes assumptions about <span class="hi-blue">how people learn</span>, who gets access, and what collaboration should feel like.', delay: 1550, html: true },
                     { type: 'story', text: 'Getting that right requires both kinds of knowledge: the code that makes it work, and the educational theory that makes it <span class="hi-green">matter</span>.', delay: 1830, html: true },
-                    { type: 'reflection', text: 'EdTech is a field with a long history of tools built by developers who have never studied pedagogy — and a shorter, growing history of educators trying to use technology they did not design. The result is often tools that are technically impressive and educationally shallow. The most effective learning technology is built by people who refuse to see those as separate domains. That is the argument for CS + Education as a discipline. That is the argument for Illinotes.', delay: 2100 },
+                    { type: 'reflection', text: 'EdTech is a field with a long history of tools built by developers who have never studied pedagogy, and a shorter, growing history of educators trying to use technology they did not design. The result is often tools that are technically impressive and educationally shallow. The most effective learning technology is built by people who refuse to see those as separate domains. That is the argument for CS + Education as a discipline. That is the argument for Illinotes.', delay: 2100 },
                 ]
             },
 
@@ -582,12 +782,12 @@
                     { type: 'story', text: 'I do not know exactly what comes next. That is not a failure of planning.', delay: 200 },
                     { type: 'story', text: 'It is honest.', delay: 400 },
                     { type: 'story', text: 'Maybe it is an edtech startup. Maybe it is tools that make teaching and learning more equitable and more human.', delay: 650 },
-                    { type: 'story', text: 'Maybe it is teaching itself — standing at the front of a room someday and trying to be for someone else what my CS and Calc teachers were for me.', delay: 950 },
+                    { type: 'story', text: 'Maybe it is teaching itself, standing at the front of a room someday and trying to be for someone else what my CS and Calc teachers were for me.', delay: 950 },
                     { type: 'story', text: 'Maybe it is all of it, in some order I cannot predict from here.', delay: 1200 },
                     { type: 'story', text: 'What I do know:', delay: 1400 },
                     { type: 'story', text: 'I got into this because I wanted to <span class="hi">build</span>. And I stayed because I love to <span class="hi-green">teach</span>.', delay: 1600, html: true },
                     { type: 'story', text: 'And somewhere in the space between those two things, I found a path worth walking.', delay: 1850 },
-                    { type: 'reflection', text: 'CS + Education as a field is still finding its own definition. That is not a weakness — it is an opportunity. The students entering this intersection now will help determine what it becomes: whether it stays a niche combination, or grows into a recognized discipline that trains a generation of builders who also understand how people learn. I intend to be part of that. I do not yet know exactly how. But I know why.', delay: 2100 },
+                    { type: 'reflection', text: 'CS + Education as a field is still finding its own definition. That is not a weakness; it is an opportunity. The students entering this intersection now will help determine what it becomes: whether it stays a niche combination, or grows into a recognized discipline that trains a generation of builders who also understand how people learn. I intend to be part of that. I do not yet know exactly how. But I know why.', delay: 2100 },
                     { type: 'end', delay: 2600 },
                 ]
             },
@@ -597,50 +797,49 @@
         // ─── RENDER ENGINE ───────────────────────────────────────────────
 
         function appendBlock(block) {
-            return new Promise(resolve => {
+            return new Promise(async (resolve) => {
                 const delay = block.delay || 0;
-                setTimeout(() => {
-                    switch (block.type) {
-                        case 'divider':
-                            renderDivider();
-                            break;
-                        case 'spacer':
-                            renderSpacer();
-                            break;
-                        case 'sys':
-                            renderSys(block.text);
-                            break;
-                        case 'boot':
-                            renderBoot(block.lines);
-                            break;
-                        case 'prologue':
-                            renderPrologue();
-                            break;
-                        case 'chapter-header':
-                            renderChapterHeader(block.text);
-                            break;
-                        case 'chapter-tag':
-                            renderChapterTag(block.text);
-                            break;
-                        case 'story':
-                            renderStory(block.text, block.html);
-                            break;
-                        case 'reflection':
-                            renderReflection(block.text);
-                            break;
-                        case 'end':
-                            renderEnd();
-                            break;
-                    }
-                    resolve();
-                }, delay);
+                await sleep(delay);
+                switch (block.type) {
+                    case 'divider':
+                        renderDivider();
+                        break;
+                    case 'spacer':
+                        renderSpacer();
+                        break;
+                    case 'sys':
+                        renderSys(block.text);
+                        break;
+                    case 'boot':
+                        renderBoot(block.lines);
+                        break;
+                    case 'prologue':
+                        renderPrologue();
+                        break;
+                    case 'chapter-header':
+                        renderChapterHeader(block.text);
+                        break;
+                    case 'chapter-tag':
+                        renderChapterTag(block.text);
+                        break;
+                    case 'story':
+                        await renderStory(block.text, block.html);
+                        break;
+                    case 'reflection':
+                        renderReflection(block.text);
+                        break;
+                    case 'end':
+                        renderEnd();
+                        break;
+                }
+                resolve();
             });
         }
 
         function renderDivider() {
-            const hr = document.createElement('hr');
-            hr.className = 'divider';
-            out.appendChild(hr);
+            const div = document.createElement('div');
+            div.className = 'divider';
+            out.appendChild(div);
             scrollBottom();
         }
 
@@ -676,12 +875,12 @@
             const box = document.createElement('div');
             box.className = 'prologue-box story-line';
             box.innerHTML = `
-    <div class="label">PROLOGUE — READ BEFORE ENTERING</div>
+    <div class="label">PROLOGUE // READ BEFORE ENTERING</div>
     <p style="margin-bottom:10px">
       This is an autoethnography about <span class="hi">exploring an academic path</span>: specifically, the path that led me to study Computer Science and Education simultaneously at the University of Illinois Urbana-Champaign. The topic I've chosen from the options available is <em>Exploring Your Academic Path</em>.
     </p>
     <p>
-      The intended audience is <span class="hi-blue">future CS students and high schoolers</span> who are trying to figure out what they want to build their life around — especially those who, like me, find themselves drawn to more than one thing and aren't sure those things are allowed to coexist. The format is a terminal-style interactive narrative: the medium is intentional. If you're reading this through a command-line interface, you're already having a small taste of the field I'm writing about.
+      The intended audience is <span class="hi-blue">future CS students and high schoolers</span> who are trying to figure out what they want to build their life around, especially those who, like me, find themselves drawn to more than one thing and aren't sure those things are allowed to coexist. The format is a terminal-style interactive narrative: the medium is intentional. If you're reading this through a command-line interface, you're already having a small taste of the field I'm writing about.
     </p>
   `;
             out.appendChild(box);
@@ -691,7 +890,23 @@
         function renderChapterHeader(text) {
             const el = document.createElement('div');
             el.className = 'chapter-header';
-            el.textContent = '> ' + text;
+            const displayText = '> ' + text;
+            el.textContent = displayText;
+            if (text === 'UNDEFINED') {
+                el.classList.add('glitch-text');
+                el.setAttribute('data-text', displayText);
+                let glitchCount = 0;
+                const glitchInterval = setInterval(() => {
+                    el.style.animation = 'none';
+                    el.offsetHeight;
+                    el.style.animation = '';
+                    el.classList.remove('glitch-text');
+                    void el.offsetHeight;
+                    el.classList.add('glitch-text');
+                    glitchCount++;
+                    if (glitchCount > 4) clearInterval(glitchInterval);
+                }, 600);
+            }
             out.appendChild(el);
             scrollBottom();
         }
@@ -706,14 +921,19 @@
 
         function renderStory(text, isHtml) {
             const el = document.createElement('p');
-            el.className = 'story-line';
             if (isHtml) {
+                el.className = 'story-line';
                 el.innerHTML = text;
             } else {
-                el.textContent = text;
+                el.style.opacity = '1';
+                el.style.margin = '6px 0';
+                el.style.color = 'var(--amber)';
             }
             out.appendChild(el);
             scrollBottom();
+            if (!isHtml) {
+                return typeText(el, text);
+            }
         }
 
         function renderReflection(text) {
@@ -732,20 +952,20 @@
       &gt; END OF AIDEN.LOG
     </div>
     <p style="margin-bottom:10px">
-      If you are reading this as a high schooler or a student wondering whether your two interests can share a single degree — they can. The path exists. You just have to map it.
+      If you are reading this as a high schooler or a student wondering whether your two interests can share a single degree, they can. The path exists. You just have to map it.
     </p>
     <p style="margin-bottom:10px">
-      And if you end up building something because of the people around you, something that makes learning a little more equitable or a little more human — then you'll understand exactly why I chose this field.
+      And if you end up building something because of the people around you, something that makes learning a little more equitable or a little more human, then you'll understand exactly why I chose this field.
     </p>
     <p style="font-size:12px;opacity:0.6;margin-top:14px">
-      — Aiden  |  CS + Education '28  |  University of Illinois Urbana-Champaign<br>
+      Aiden  |  CS + Education '29  |  University of Illinois Urbana-Champaign<br>
       Type 'restart' to run from the beginning.
     </p>
   `;
             out.appendChild(box);
             scrollBottom();
             updateProgress(TOTAL_CHAPTERS, TOTAL_CHAPTERS);
-            hintText.textContent = 'aiden.log complete. type "restart" to run again.';
+            hintText.innerHTML = 'aiden.log complete. type "restart" or "prev" to navigate. <span class="cursor"></span>';
         }
 
         function scrollBottom() {
@@ -773,21 +993,69 @@
             const f = document.createElement('div');
             f.className = 'chapter-flash';
             document.body.appendChild(f);
-            setTimeout(() => f.remove(), 400);
+            setTimeout(() => f.remove(), 500);
+        }
+
+        // ─── ASCII TRANSITIONS ────────────────────────────────────────
+
+        const asciiTransitions = {
+            INIT: ['  [ > RUN program.exe ]', '  >> COMPILING...'],
+            DUAL_CORE: ['  CPU_1: [teaching]  CPU_2: [coding]', '  >> PARALLEL EXECUTION...'],
+            MENTORS: ['  > LOADING mentors.dll', '  >> DEPENDENCY RESOLVED'],
+            NAVIGATE: ['  > RESOLVE path --destination=UIUC', '  >> MAPPING ROUTES...'],
+            RUNTIME: ['  > EXEC freshman_year.sh', '  >> ENVIRONMENT INITIALIZED'],
+            BUILD: ['  > MAKE illinotes', '  >> LINKING CS + EDUCATION...'],
+            UNDEFINED: ['  > ???.exe', '  ERROR: path not found', '  >> continuing anyway...'],
+        };
+
+        // ─── TYPEWRITER ENGINE ────────────────────────────────────────
+
+        let skipRequested = false;
+
+        async function typeText(el, text, speed = 28) {
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            el.appendChild(cursor);
+
+            for (let i = 0; i < text.length; i++) {
+                if (skipRequested) {
+                    el.insertBefore(document.createTextNode(text.slice(i)), cursor);
+                    break;
+                }
+                el.insertBefore(document.createTextNode(text[i]), cursor);
+                if (i % 3 === 0) scrollBottom();
+                await sleep(speed);
+            }
+            cursor.remove();
         }
 
         // ─── CHAPTER LOADER ─────────────────────────────────────────────
 
-        async function loadChapter(index) {
+        async function loadChapter(index, instant = false) {
             isTyping = true;
             input.disabled = true;
+            skipRequested = false;
             hintText.textContent = 'loading...';
 
             const chapter = chapters[index];
 
-            if (index > 0) {
+            if (index > 0 && !instant) {
                 flashScreen();
                 await sleep(350);
+
+                // ASCII transition art
+                if (asciiTransitions[chapter.id]) {
+                    for (const line of asciiTransitions[chapter.id]) {
+                        const el = document.createElement('div');
+                        el.className = 'sys boot-line';
+                        el.style.cssText = 'font-size:11px;color:var(--amber-dim);letter-spacing:1px;';
+                        el.textContent = line;
+                        out.appendChild(el);
+                        await sleep(200);
+                    }
+                    await sleep(300);
+                }
+
                 const sep = document.createElement('div');
                 sep.style.cssText = 'height:30px;';
                 out.appendChild(sep);
@@ -795,17 +1063,37 @@
                 const sepLine = document.createElement('div');
                 sepLine.className = 'sys';
                 sepLine.style.cssText = 'font-size:11px;letter-spacing:3px;opacity:0.3;margin-bottom:4px;';
-                sepLine.textContent = `────────────────────── ${chapter.id} ──────────────────────`;
+                sepLine.textContent = `====================== ${chapter.id} ======================`;
+                out.appendChild(sepLine);
+            } else if (index > 0 && instant) {
+                const sep = document.createElement('div');
+                sep.style.cssText = 'height:30px;';
+                out.appendChild(sep);
+                const sepLine = document.createElement('div');
+                sepLine.className = 'sys';
+                sepLine.style.cssText = 'font-size:11px;letter-spacing:3px;opacity:0.3;margin-bottom:4px;';
+                sepLine.textContent = `====================== ${chapter.id} ======================`;
                 out.appendChild(sepLine);
             }
 
-            for (const block of chapter.blocks) {
-                await appendBlock(block);
-            }
+            if (instant) {
+                // Render all blocks immediately with no delays or animations
+                for (const block of chapter.blocks) {
+                    await appendBlockInstant(block);
+                }
+            } else {
+                // Convert absolute delays to relative delays between blocks
+                let lastDelay = 0;
+                for (const block of chapter.blocks) {
+                    const absoluteDelay = block.delay || 0;
+                    const relativeDelay = Math.max(0, absoluteDelay - lastDelay);
+                    lastDelay = absoluteDelay;
+                    await appendBlock({ ...block, delay: relativeDelay });
+                }
 
-            // Wait for longest delay + buffer
-            const maxDelay = Math.max(...chapter.blocks.map(b => b.delay || 0));
-            await sleep(maxDelay + 400);
+                // Small buffer after last block
+                await sleep(400);
+            }
 
             isTyping = false;
             input.disabled = false;
@@ -814,8 +1102,76 @@
             updateProgress(index + 1, TOTAL_CHAPTERS);
 
             if (index < chapters.length - 1) {
-                hintText.textContent = `[ ${chapter.id} ]  ↓ press ENTER to continue  |  type "help" for commands`;
+                hintText.innerHTML = `[ ${chapter.id} ]  ↓ press ENTER to continue  |  type "help" for commands <span class="cursor"></span>`;
             }
+        }
+
+        // Instant render for prev/back navigation — no delays, no animations
+        function appendBlockInstant(block) {
+            switch (block.type) {
+                case 'divider':
+                    const div = document.createElement('div');
+                    div.className = 'divider';
+                    div.style.animation = 'none';
+                    div.style.width = '100%';
+                    div.style.opacity = '0.4';
+                    out.appendChild(div);
+                    break;
+                case 'spacer':
+                    renderSpacer();
+                    break;
+                case 'sys':
+                    const sys = document.createElement('div');
+                    sys.className = 'sys';
+                    sys.style.opacity = '1';
+                    sys.textContent = block.text;
+                    out.appendChild(sys);
+                    break;
+                case 'boot':
+                    block.lines.forEach(line => {
+                        const el = document.createElement('div');
+                        el.style.color = line.color === 'amber' ? 'var(--amber-bright)' : 'var(--amber-dim)';
+                        el.style.opacity = '1';
+                        el.textContent = line.text;
+                        out.appendChild(el);
+                    });
+                    break;
+                case 'prologue':
+                    renderPrologue();
+                    break;
+                case 'chapter-header':
+                    renderChapterHeader(block.text);
+                    break;
+                case 'chapter-tag':
+                    const tag = document.createElement('div');
+                    tag.className = 'chapter-tag';
+                    tag.style.opacity = '1';
+                    tag.textContent = block.text;
+                    out.appendChild(tag);
+                    break;
+                case 'story':
+                    const p = document.createElement('p');
+                    p.style.opacity = '1';
+                    if (block.html) {
+                        p.innerHTML = block.text;
+                    } else {
+                        p.textContent = block.text;
+                    }
+                    out.appendChild(p);
+                    break;
+                case 'reflection':
+                    const ref = document.createElement('div');
+                    ref.className = 'reflection';
+                    ref.style.animation = 'none';
+                    ref.style.opacity = '1';
+                    ref.textContent = block.text;
+                    out.appendChild(ref);
+                    break;
+                case 'end':
+                    renderEnd();
+                    break;
+            }
+            return Promise.resolve();
         }
 
         function sleep(ms) {
@@ -831,7 +1187,7 @@
 
         // ─── COMMAND HANDLER ────────────────────────────────────────────
 
-        function handleCommand(raw) {
+        async function handleCommand(raw) {
             const cmd = raw.trim().toLowerCase();
 
             if (cmd === '' || cmd === 'next' || cmd === 'n') {
@@ -857,15 +1213,33 @@
             if (cmd === 'help') {
                 appendEcho(`
   AVAILABLE COMMANDS
-  ──────────────────────────────────────────
+  ==========================================
   [ENTER]    advance to next chapter
   next       advance to next chapter
+  prev       go back to previous chapter
+  [name]     jump to chapter by name (e.g. "init")
   chapters   list all chapter titles
   skip [n]   jump to chapter n (e.g. "skip 3")
   restart    restart from the beginning
   help       show this message
-  ──────────────────────────────────────────
+  ==========================================
     `.trim());
+                return;
+            }
+
+            if (cmd === 'prev' || cmd === 'back') {
+                if (isTyping) return;
+                if (currentChapter <= 0) {
+                    appendEcho('Already at the beginning.');
+                    return;
+                }
+                const target = currentChapter - 1;
+                out.innerHTML = '';
+                for (let i = 0; i < target; i++) {
+                    await loadChapter(i, true);
+                }
+                currentChapter = target;
+                await loadChapter(target);
                 return;
             }
 
@@ -890,6 +1264,26 @@
                 return;
             }
 
+            // Jump to chapter by name (e.g. "init", "build", "undefined")
+            const chapterIndex = chapters.findIndex(c => c.id.toLowerCase() === cmd);
+            if (chapterIndex !== -1) {
+                if (isTyping) return;
+                if (chapterIndex > currentChapter) {
+                    currentChapter = chapterIndex;
+                    loadChapter(currentChapter);
+                } else if (chapterIndex < currentChapter) {
+                    out.innerHTML = '';
+                    for (let i = 0; i < chapterIndex; i++) {
+                        await loadChapter(i, true);
+                    }
+                    currentChapter = chapterIndex;
+                    await loadChapter(chapterIndex);
+                } else {
+                    appendEcho(`Already on chapter ${chapters[chapterIndex].id}.`);
+                }
+                return;
+            }
+
             appendEcho(`command not found: "${raw}". Type "help" for available commands.`);
         }
 
@@ -905,6 +1299,10 @@
 
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
+                if (isTyping) {
+                    skipRequested = true;
+                    return;
+                }
                 const val = input.value;
                 input.value = '';
                 handleCommand(val);
