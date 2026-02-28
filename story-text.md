@@ -31,7 +31,7 @@ The intended audience is <span class="hi-blue">future CS students and high schoo
 
 It was the summer before my freshman year of high school.
 
-I enrolled in a programming class, not because I had a plan, but because I was curious.
+I enrolled in a programming class, not because I had a plan, or even knew anything about computer science, CHANGE but because I was curious.
 
 And then something happened that I didn't expect:
 
@@ -41,11 +41,11 @@ It wasn't impressive by any measurable standard. But the feeling was unlike anyt
 
 A blank screen. A language I barely knew. And yet, <span class="hi-green">I made something exist that did not exist before.</span>
 
-That feeling of creation, that was the hook. Not algorithms, not career prospects. Just the raw, electric fact that I could <span class="hi">build</span>.
+That feeling of creation, that was the hook. For me this wasn't about analyzing some complex algorithm or having lofty high-paying career goals, but just the idea that I could <span class="hi">build</span>. CHANGE
 
 ### Reflection
 
-Access to early CS education is not evenly distributed. Summer programs and elective coding classes often exist only at well-resourced schools. The students who discover that spark earliest are frequently those who are already advantaged. I was lucky to have access. That luck matters, and it shapes who ends up in this field.
+Access to early CS education is not evenly distributed. Summer programs and elective coding classes often exist only at well-resourced schools. The students who discover that spark earliest are  those who are already have some level of advantage, like more money, access to technology, and spare time. I was lucky to have access. That luck matters, and it shapes who can participate in the space. CHANGE
 
 ---
 
@@ -59,19 +59,19 @@ Some of us were teachers before we were coders.
 
 In high school, I was a novice mentor for my debate team. I taught new members how to research, how to argue, how to think on their feet.
 
-I was also a swim instructor for four years. I stood at the edge of the water and watched kids figure out how to do something they had never done before.
+I was also a swim instructor for four years. I stood in the water and guided my kids to be able to do new things and gain new skills in the water that they had never done before, or might even have been scared of. CHANGE
 
 That moment, when it <span class="hi">clicks</span> for someone, is not that different from the moment code finally runs.
 
 Both are about understanding a system deeply enough to explain it to someone who is seeing it for the first time.
 
-I never saw CS and Education as two separate interests I had to choose between.
+Computer Science and Education are not two sepearate interests that you have to choose between. CHANGE
 
 <span class="hi-blue">They were the same impulse. Running in parallel.</span>
 
 ### Reflection
 
-In most CS programs, pedagogy is treated as a soft skill, secondary to technical ability. But research consistently shows that the ability to explain and teach ideas deepens your own understanding. The students who help others learn become stronger learners themselves. CS culture undervalues this. CS + Education, as a discipline, insists on taking it seriously.
+In most CS programs, pedagogy is treated as a soft skill, secondary to technical ability. But the ability to explain and teach ideas deepens your own understanding. Students who help others learn become stronger learners themselves. CS culture undervalues this. CS + Education, as a discipline, insists on taking it seriously. CHANGE
 
 ---
 
@@ -79,15 +79,15 @@ In most CS programs, pedagogy is treated as a soft skill, secondary to technical
 
 // THE HUMANS WHO RAN BEST ON ME
 
-Junior year. I had the same CS teacher and the same Calculus teacher.
+My junior year I had two teachers who really had an impact on me: my CS teacher and my Calculus teacher. CHANGE
 
-And then senior year: same CS teacher. Same Calculus teacher.
+And then senior year, I found myself back in those classes once again. CHANGE
 
 Two years with the same people. You do not stay with someone for two years in a classroom and walk away unchanged.
 
-These weren't teachers who handed you information and waited for you to absorb it.
+They were more than just teachers who gave you raw information and made you figure it out on your own. CHANGE
 
-They were teachers who seemed genuinely curious about what you were thinking.
+They were teachers who were genuinely curious about what I was thinking and how I was learning. CHANGE
 
 There is a difference between being taught <span class="hi">at</span> and being taught <span class="hi-green">with</span>.
 
@@ -97,7 +97,7 @@ And that knowledge sits underneath everything I now want to build.
 
 ### Reflection
 
-The research on teacher-student relationships is unambiguous: students who experience genuine, sustained connection with a teacher show measurably better outcomes, academically and personally. These relationships are infrastructure. They do not appear in school budgets or ranking metrics, but they are load-bearing. My own trajectory runs directly through the two teachers who chose to invest in me across two years.
+Students who experience genuine, sustained connection with a teacher have measurably better outcomes, academically and personally. These relationships are infrastructure. They ahve a massive impact, even if they don't show up on school budgets or ranking methodologies. My own trajectory runs directly through the two teachers who chose to invest in me across those last two years. CHANGE
 
 ---
 
@@ -113,17 +113,19 @@ UIUC had something that most schools do not bother to surface clearly:
 
 <span class="hi">A visual representation of what your academic path could actually look like.</span>
 
-Not just a list of requirements. A map. With branches. With options. With the shape of four years laid out so you could trace your finger along different routes.
+When every other school I looked at gave me a vague description of what a major would be, or maybe some course requirements, UIUC gave me a map where I could see all the classes I needed to take, their prerequisites, and alternate options. CHANGE
 
-For someone who wanted to study Computer Science <span class="hi-blue">AND</span> Education, and was not sure that combination was even allowed to exist, that map was permission.
+As I went through different course paths and tried to decide what I wanted to study, from public policy to philosphy to computer science to education, this was one tool that really helped me explore what I want. CHANGE + NEW
 
-I visited. I decided. I committed to going somewhere I had never lived, where I did not know a single person.
+For someone who wanted to study Computer Science <span class="hi-blue">AND</span> Education, and was not sure that combination was even allowed to exist, that map was a sign that I could do whatever I wanted to do. CHANGE
+
+I visited. I committed to going somewhere I had never lived, where I did not know a single person. CHANGE
 
 That is its own kind of courage. And I didn't fully appreciate it until I was already here.
 
 ### Reflection
 
-Transparency in academic pathways is an equity issue. First-generation students, students from under-resourced high schools, and students pursuing unusual combinations of majors often cannot see what is available to them. Curriculum visibility, showing students what their path could look like, not just what they are required to complete, changes who applies, who enrolls, and who finishes. The map I found wasn't just a tool. It was an invitation.
+Transparency in academic pathways is an issue of equity. First-generation students, students from under-resourced high schools, and students pursuing unusual combinations of majors often cannot see what is available to them. Curriculum visibility, showing students what their path could look like, not just what they are required to complete, changes who applies, who enrolls, and who finishes. The transparency of the curriculum map was a beacon of hope for me. It was something to let me know that what I wanted to do was possible. CHANGE
 
 ---
 
@@ -131,13 +133,13 @@ Transparency in academic pathways is an equity issue. First-generation students,
 
 // EXECUTING IN A NEW ENVIRONMENT
 
-The first few weeks at UIUC were genuinely disorienting.
+The first few weeks at UIUC were a whirlwind. CHANGE
 
-Everything was bigger. The lecture halls, the workload, the distance from anything familiar.
+Everything was bigger. The lecture halls, the dining halls, the workload, the distance from anything urban or familiar. CHANGE
 
 I had made the decision to come here without knowing anyone. That is not something you can fully simulate in advance.
 
-But I found a group of friends early. And that changed everything.
+But I found a great group of friends early, and that changed everything for me. CHANGE
 
 Not because it made college easy (it doesn't) but because it made the difficulty <span class="hi">shared</span>.
 
@@ -149,7 +151,7 @@ That is the difference between a project and a <span class="hi">product</span>.
 
 ### Reflection
 
-Loneliness and social isolation in university STEM programs are documented and serious problems, particularly for students who are the first in their family to attend college, or who arrive without an existing social network. Community is not an added benefit of college; for many students, it is the variable that determines whether they stay. I was fortunate. I found my people quickly. I try to remember that not everyone does.
+Loneliness and social isolation in university, especially in traditionally unsocial STEM programs is a serious problem, particularly for students who are the first in their family to attend college, or who arrive without an existing social network. Community is not an added benefit of college; for many students, it is the variable that determines how their colleg eexperience goes, or even whether or not they decide to stay. I was fortunate to find my people quickly, but it is also important to remember that not everyone does. CHANGE
 
 ---
 
@@ -157,23 +159,23 @@ Loneliness and social isolation in university STEM programs are documented and s
 
 // SHIPPING THE INTERSECTION
 
-Let me tell you about Illinotes.
+Let me tell you about Illinotes.com CHANGE
 
 It is a note-sharing platform built specifically for UIUC students. Share notes by course. Connect with peers. Ask a chatbot when you're stuck at 2am before an exam.
 
 It is also the moment when CS and Education stopped being two things I was studying and became <span class="hi">one thing I was doing</span>.
 
-I was not assigned this project. No rubric brought it into existence.
+I was not assigned this project. It didn't come from a prompt or a rubric. CHANGE
 
 It exists because I looked at the students around me, my friends, my classmates, and saw a real problem worth solving.
 
-A well-designed learning tool is not just a technical object. It encodes assumptions about <span class="hi-blue">how people learn</span>, who gets access, and what collaboration should feel like.
+A well-designed learning tool is more than just a technical object. It encodes assumptions about <span class="hi-blue">how people learn</span>, who gets access, and what learning and collaboration should feel like. CHANGE
 
 Getting that right requires both kinds of knowledge: the code that makes it work, and the educational theory that makes it <span class="hi-green">matter</span>.
 
 ### Reflection
 
-EdTech is a field with a long history of tools built by developers who have never studied pedagogy, and a shorter, growing history of educators trying to use technology they did not design. The result is often tools that are technically impressive and educationally shallow. The most effective learning technology is built by people who refuse to see those as separate domains. That is the argument for CS + Education as a discipline. That is the argument for Illinotes.
+EdTech is a field with a long history of tools built by developers who have never studied pedagogy, and a shorter, growing history of educators trying to use technology they did not design. The result is often tools that are technically impressive but educationally shallow. The most effective learning technology is built by people who refuse to see those as separate domains. That is what gives CS + Education its true value, and what makes Illinotes a 'worth it' product. CHANGE
 
 ---
 
@@ -181,13 +183,13 @@ EdTech is a field with a long history of tools built by developers who have neve
 
 // STILL COMPILING
 
-I do not know exactly what comes next. That is not a failure of planning.
+I do not know exactly what comes next. That doesn't come from a failure of planning or looking ahead to the future. CHANGE
 
-It is honest.
+It comes from a place of honesty about where I am in my journey and what led me here. CHANGE
 
 Maybe it is an edtech startup. Maybe it is tools that make teaching and learning more equitable and more human.
 
-Maybe it is teaching itself, standing at the front of a room someday and trying to be for someone else what my CS and Calc teachers were for me.
+Maybe it is teaching itself, standing in the middle of the room someday and trying to be for someone else what my CS and Calc teachers were for me.
 
 Maybe it is all of it, in some order I cannot predict from here.
 
@@ -199,7 +201,7 @@ And somewhere in the space between those two things, I found a path worth walkin
 
 ### Reflection
 
-CS + Education as a field is still finding its own definition. That is not a weakness; it is an opportunity. The students entering this intersection now will help determine what it becomes: whether it stays a niche combination, or grows into a recognized discipline that trains a generation of builders who also understand how people learn. I intend to be part of that. I do not yet know exactly how. But I know why.
+CS + Education as a field is still finding its own definition. That isn't a bad thing though. The students entering this intersection now will help determine what it becomes: whether it stays a niche combination, or grows into a recognized discipline that creates a generation of builders who also understand how people learn. I intend to be part of that. I do not yet know exactly how. But I know why.
 
 ---
 
